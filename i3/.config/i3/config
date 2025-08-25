@@ -34,9 +34,9 @@ exec --no-startup-id "/home/ali/.config/i3/touchpadSettings.sh"
 exec --no-startup-id "nitrogen --restore"
 exec --no-startup-id "picom --daemon"
 exec --no-startup-id "polybar"
-exec --no-startup-id "copyq"
-exec --no-startup-id "flameshot"
-
+exec --no-startup-id "xfce4-clipman"
+exec --no-startup-id "flatpak run org.flameshot.Flameshot"
+exec --no-startup-id "pipewire"
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -59,7 +59,7 @@ bindsym $mod+Return exec kitty
 # kill focused window
 bindsym $mod+Shift+c kill
 
-bindsym $mod+b exec firefox
+bindsym $mod+b exec zen
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec "rofi -show drun"
@@ -192,7 +192,9 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-for_window [class=".polybar-wrappe"] gaps inner 0, gaps outer 0
+for_window [class="polybar"] gaps inner 0, gaps outer 0
 
 gaps inner 10
 
+for_window [window_role="pop-up"] floating enable
+for_window [class="ksnip"] floating enable
