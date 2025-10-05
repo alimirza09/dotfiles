@@ -143,6 +143,54 @@ require('lazy').setup({
       },
     },
   },
+  {
+    'folke/flash.nvim',
+    event = 'VeryLazy',
+    ---@type Flash.Config
+    opts = {},
+    keys = {
+      {
+        's',
+        mode = { 'n', 'x', 'o' },
+        function()
+          require('flash').jump()
+        end,
+        desc = 'Flash',
+      },
+      {
+        'S',
+        mode = { 'n', 'x', 'o' },
+        function()
+          require('flash').treesitter()
+        end,
+        desc = 'Flash Treesitter',
+      },
+      {
+        'r',
+        mode = 'o',
+        function()
+          require('flash').remote()
+        end,
+        desc = 'Remote Flash',
+      },
+      {
+        'R',
+        mode = { 'o', 'x' },
+        function()
+          require('flash').treesitter_search()
+        end,
+        desc = 'Treesitter Search',
+      },
+      {
+        '<c-s>',
+        mode = { 'c' },
+        function()
+          require('flash').toggle()
+        end,
+        desc = 'Toggle Flash Search',
+      },
+    },
+  },
 
   {
     'nvim-telescope/telescope.nvim',
@@ -197,6 +245,10 @@ require('lazy').setup({
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [N]eovim files' })
     end,
+  },
+  {
+    'karb94/neoscroll.nvim',
+    opts = {},
   },
 
   {
@@ -380,7 +432,6 @@ require('lazy').setup({
       },
     },
   },
-
   { -- Autocompletion
     'saghen/blink.cmp',
     event = 'VimEnter',
@@ -402,7 +453,7 @@ require('lazy').setup({
     },
     opts = {
       keymap = {
-        preset = 'default',
+        preset = 'super-tab',
       },
 
       appearance = {
@@ -513,3 +564,29 @@ vim.keymap.set('n', '<leader>l', '<Cmd>bnext<CR>', { desc = 'Next buffer' })
 
 vim.keymap.set('n', '<leader>h', '<Cmd>bprevious<CR>', { desc = 'Previous buffer' })
 vim.keymap.set('n', '<leader>c', '<Cmd>bdelete<CR>', { desc = 'Previous buffer' })
+require('neoscroll').setup {
+  mappings = { -- Keys to be mapped to their corresponding default scrolling animation
+    '<C-u>',
+    '<C-d>',
+    '<C-b>',
+    '<C-f>',
+    '<C-y>',
+    '<C-e>',
+    'zt',
+    'zz',
+    'zb',
+  },
+  hide_cursor = true, -- Hide cursor while scrolling
+  stop_eof = true, -- Stop at <EOF> when scrolling downwards
+  respect_scrolloff = false, -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+  cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
+  duration_multiplier = 1.0, -- Global duration multiplier
+  easing = 'linear', -- Default easing function
+  pre_hook = nil, -- Function to run before the scrolling animation starts
+  post_hook = nil, -- Function to run after the scrolling animation ends
+  performance_mode = false, -- Disable "Performance Mode" on all buffers.
+  ignored_events = { -- Events ignored while scrolling
+    'WinScrolled',
+    'CursorMoved',
+  },
+}
