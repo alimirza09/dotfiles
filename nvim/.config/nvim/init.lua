@@ -511,6 +511,8 @@ require('lazy').setup({
       end
     end,
   },
+  { 'RaafatTurki/hex.nvim' },
+  { 'LunarVim/bigfile.nvim' },
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
@@ -588,5 +590,21 @@ require('neoscroll').setup {
   ignored_events = { -- Events ignored while scrolling
     'WinScrolled',
     'CursorMoved',
+  },
+}
+require('hex').setup()
+
+require('bigfile').setup {
+  filesize = 2, -- size of the file in MiB, the plugin round file sizes to the closest MiB
+  pattern = { '*' }, -- autocmd pattern or function see <### Overriding the detection of big files>
+  features = { -- features to disable
+    'indent_blankline',
+    'illuminate',
+    'lsp',
+    'treesitter',
+    'syntax',
+    'matchparen',
+    'vimopts',
+    'filetype',
   },
 }
