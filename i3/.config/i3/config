@@ -31,7 +31,7 @@ exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 exec --no-startup-id "/home/ali/.config/i3/touchpadSettings.sh"
-exec --no-startup-id "nitrogen --restore"
+exec --no-startup-id "/home/ali/.config/i3/.fehbg"
 exec --no-startup-id "picom --daemon"
 exec --no-startup-id "polybar"
 exec --no-startup-id "xfce4-clipman"
@@ -59,7 +59,7 @@ bindsym $mod+Return exec kitty
 # kill focused window
 bindsym $mod+Shift+c kill
 
-bindsym $mod+b exec zen
+bindsym $mod+b exec zen-browser
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec "rofi -show drun"
